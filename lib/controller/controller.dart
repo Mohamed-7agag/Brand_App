@@ -83,4 +83,6 @@ class Cart extends GetxController {
 
   RxInt curIndex = 0.obs;
   RxInt selectedIndex = 0.obs;
+
+  
 }

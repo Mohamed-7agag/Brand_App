@@ -95,7 +95,7 @@ class _ItemBoxState extends State<ItemBox> {
                         controller.addCategoryAndIndex(
                             widget.categoryIndex, widget.index);
                       }
-                      print(controller.CategoryAndIndexLength);
+                      
                     },
                     icon: !controller.cartLikedItems.contains(
                             category[widget.categoryIndex][widget.index])

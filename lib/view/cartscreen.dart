@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:for_u/controller/controller.dart';
 import 'package:for_u/view/itemDetail.dart';
@@ -189,21 +188,29 @@ class _CartScreenState extends State<CartScreen> {
                     ElevatedButton(
                       onPressed: () {
                         if (controller.totalprice != 0) {
-                          Get.defaultDialog(actions: [
-                            IconButton(
-                                onPressed: () {
-                                  Get.back();
-                                },
-                                icon: const Text("OK")),
-                          ], title: "Done", middleText: "Successful Order");
+                          Get.defaultDialog(
+                              actions: [
+                                IconButton(
+                                    onPressed: () {
+                                      Get.back();
+                                    },
+                                    icon: const Text("OK")),
+                              ],
+                              title: "Done",
+                              middleText: "Successful Order",
+                              titleStyle: TextStyle(color: Colors.green[600]));
                         } else {
-                          Get.defaultDialog(actions: [
-                            IconButton(
-                                onPressed: () {
-                                  Get.back();
-                                },
-                                icon: const Text("OK")),
-                          ], title: "Sorry", middleText: "No Item In Cart");
+                          Get.defaultDialog(
+                              actions: [
+                                IconButton(
+                                    onPressed: () {
+                                      Get.back();
+                                    },
+                                    icon: const Text("OK")),
+                              ],
+                              title: "Sorry",
+                              middleText: "No Item In Cart",
+                              titleStyle: TextStyle(color: Colors.red[600]));
                         }
                       },
                       style: ButtonStyle(

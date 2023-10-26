@@ -119,10 +119,14 @@ class _ItemDetailState extends State<ItemDetail> {
                                   controller.removeLike(
                                       category[widget.categoryIndex]
                                           [widget.index]);
+                                  controller.removeCategoryAndIndex(
+                                      widget.categoryIndex, widget.index);
                                 } else {
                                   controller.addLike(
                                       category[widget.categoryIndex]
                                           [widget.index]);
+                                  controller.addCategoryAndIndex(
+                                      widget.categoryIndex, widget.index);
                                 }
                               },
                               icon: !controller.cartLikedItems.contains(
