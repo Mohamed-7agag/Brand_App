@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_string_interpolations, unused_import
+// ignore_for_file: unnecessary_string_interpolations, unused_import, file_names
 
 import 'package:flutter/material.dart';
 import 'package:for_u/controller/controller.dart';
@@ -27,6 +27,7 @@ class _ItemFavoriteBoxState extends State<ItemFavoriteBox> {
     var mq = MediaQuery.of(context).size;
     return InkWell(
       onTap: () {
+        controller.selectedIndex.value = 0;
         Get.to(() => ItemDetail(
             categoryIndex: widget.categoryIndex, index: widget.index));
       },

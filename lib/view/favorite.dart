@@ -26,7 +26,9 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const SizedBox(),
+              const SizedBox(
+                height: 5,
+              ),
               Expanded(
                 flex: 1,
                 child: GetBuilder<Cart>(

@@ -1,4 +1,5 @@
-// ignore_for_file: unused_local_variable, prefer_typing_uninitialized_variables
+// ignore_for_file: unused_local_variable, prefer_typing_uninitialized_variables, file_names
+
 
 import 'package:flutter/material.dart';
 import 'package:for_u/controller/controller.dart';
@@ -173,7 +174,9 @@ class _ItemDetailState extends State<ItemDetail> {
                       ),
                       ElevatedButton(
                         onPressed: () {
+                          
                           if (controller.selectedIndex.value != 0) {
+                            
                             if (controller.cartitems.contains(
                                 category[widget.categoryIndex][widget.index])) {
                               Get.defaultDialog(actions: [
@@ -200,6 +203,7 @@ class _ItemDetailState extends State<ItemDetail> {
                                       fontSize: 11, fontFamily: 'myfont'),
                                 ),
                               );
+                              
                               controller.add(
                                   category[widget.categoryIndex][widget.index]);
                             }

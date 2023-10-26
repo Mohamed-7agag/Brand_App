@@ -214,7 +214,7 @@ class _HomepageState extends State<Homepage> {
               Container(
                 width: mq.width,
                 height: mq.height / 6,
-                padding: EdgeInsets.symmetric(horizontal: mq.width * 0.07),
+                padding: EdgeInsets.symmetric(horizontal: mq.width * 0.05),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     color: const Color(0xff111111)),
@@ -227,6 +227,8 @@ class _HomepageState extends State<Homepage> {
                           style: TextStyle(
                               fontFamily: 'myfont',
                               fontSize: 26,
+                              height: 1.3,
+                              color: Colors.white,
                               fontWeight: FontWeight.w500),
                           children: [
                             TextSpan(

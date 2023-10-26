@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_string_interpolations,
+// ignore_for_file: unnecessary_string_interpolations,, file_names
 
 import 'package:flutter/material.dart';
 import 'package:for_u/controller/controller.dart';
@@ -27,12 +27,16 @@ class _ItemBoxState extends State<ItemBox> {
     var mq = MediaQuery.of(context).size;
     return InkWell(
       onTap: () {
+        controller.selectedIndex.value = 0;
         Get.to(() => ItemDetail(
             categoryIndex: widget.categoryIndex, index: widget.index));
       },
       child: Container(
-        padding: EdgeInsets.symmetric(
-            vertical: mq.height * 0.009, horizontal: mq.width * 0.02),
+        padding: EdgeInsets.only(
+            top: mq.height * 0.009,
+            right: mq.width * 0.02,
+            left: mq.width * 0.02,
+            bottom: mq.height * 0.002),
         width: mq.width / 2.3,
         height: mq.height / 3.5,
         decoration: BoxDecoration(
@@ -60,6 +64,7 @@ class _ItemBoxState extends State<ItemBox> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,6 +73,9 @@ class _ItemBoxState extends State<ItemBox> {
                       " ${category[widget.categoryIndex][widget.index].name}",
                       style:
                           const TextStyle(fontFamily: 'myfont', fontSize: 13),
+                    ),
+                    const SizedBox(
+                      height: 4,
                     ),
                     Text(
                       " ${category[widget.categoryIndex][widget.index].price}\$",
@@ -95,7 +103,6 @@ class _ItemBoxState extends State<ItemBox> {
                         controller.addCategoryAndIndex(
                             widget.categoryIndex, widget.index);
                       }
-                      
                     },
                     icon: !controller.cartLikedItems.contains(
                             category[widget.categoryIndex][widget.index])

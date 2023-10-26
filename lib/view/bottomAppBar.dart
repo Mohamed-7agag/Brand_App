@@ -67,12 +67,13 @@ class _BottomappbarState extends State<Bottomappbar> {
           children: [
             screen.elementAt(controller.curIndex.value),
             Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(18.0),
               child: Align(
                 alignment: const Alignment(0.0, 1.0),
                 child: ClipRRect(
                   borderRadius: const BorderRadius.all(Radius.circular(30)),
                   child: BottomNavigationBar(
+                    selectedLabelStyle: const TextStyle(height: 1.5),
                     selectedFontSize: 11,
                     currentIndex: controller.curIndex.value,
                     selectedItemColor: const Color(0xffffa500),

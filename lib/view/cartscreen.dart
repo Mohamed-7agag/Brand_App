@@ -79,6 +79,8 @@ class _CartScreenState extends State<CartScreen> {
                                     ),
                                     child: InkWell(
                                       onTap: () {
+                                        controller.selectedIndex.value = 0;
+
                                         Get.to(
                                           () => ItemDetail(
                                             categoryIndex: controller
