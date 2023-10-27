@@ -215,9 +215,13 @@ class _HomepageState extends State<Homepage> {
                 width: mq.width,
                 height: mq.height / 6,
                 padding: EdgeInsets.symmetric(horizontal: mq.width * 0.05),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: const Color(0xff111111)),
+                decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(40),
+                        topRight: Radius.circular(5),
+                        bottomLeft: Radius.circular(5),
+                        bottomRight: Radius.circular(40)),
+                    color: Color(0xff111111)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -244,7 +248,7 @@ class _HomepageState extends State<Homepage> {
                 ),
               ),
               SizedBox(
-                height: mq.height * 0.03,
+                height: mq.height * 0.025,
               ),
               const Text(
                 "Best Collection",

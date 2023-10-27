@@ -1,6 +1,5 @@
 // ignore_for_file: unused_local_variable, prefer_typing_uninitialized_variables, file_names
 
-
 import 'package:flutter/material.dart';
 import 'package:for_u/controller/controller.dart';
 import 'package:for_u/model/localModel.dart';
@@ -22,14 +21,14 @@ class ItemDetail extends StatefulWidget {
 
 class _ItemDetailState extends State<ItemDetail> {
   Cart controller = Get.find<Cart>();
-  String conText = "";
+  String choosedSize = "";
 
   Widget customRadio(String txt, int index) {
     return Obx(
       () => InkWell(
         onTap: () {
           controller.selectedIndex.value = index;
-          conText = txt;
+          choosedSize = txt;
         },
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 25),
@@ -90,7 +89,7 @@ class _ItemDetailState extends State<ItemDetail> {
                   decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(50),
+                        topLeft: Radius.circular(55),
                       )),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -174,20 +173,31 @@ class _ItemDetailState extends State<ItemDetail> {
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          
                           if (controller.selectedIndex.value != 0) {
-                            
                             if (controller.cartitems.contains(
-                                category[widget.categoryIndex][widget.index])) {
-                              Get.defaultDialog(actions: [
-                                IconButton(
-                                    onPressed: () {
-                                      Get.back();
-                                    },
-                                    icon: const Text("OK")),
-                              ], middleText: "Item Already Exist In cart");
+                                    category[widget.categoryIndex]
+                                        [widget.index]) &&
+                                category[widget.categoryIndex][widget.index]
+                                        .size ==
+                                    choosedSize) {
+                              Get.defaultDialog(
+                                  actions: [
+                                    IconButton(
+                                        onPressed: () {
+                                          Get.back();
+                                        },
+                                        icon: const Text("OK")),
+                                  ],
+                                  middleText: "Item Already Exist In cart",
+                                  title: "Not Possible",
+                                  titleStyle: TextStyle(
+                                      fontSize: 15, color: Colors.red[600]),
+                                  titlePadding: const EdgeInsets.only(
+                                      top: 15, bottom: 10),
+                                  middleTextStyle:
+                                      const TextStyle(fontSize: 13));
                             } else {
-                              controller.addSize(conText);
+                              controller.addSize(choosedSize);
                               Get.snackbar(
                                 "",
                                 "",
@@ -203,7 +213,8 @@ class _ItemDetailState extends State<ItemDetail> {
                                       fontSize: 11, fontFamily: 'myfont'),
                                 ),
                               );
-                              
+                              category[widget.categoryIndex][widget.index]
+                                  .size = choosedSize;
                               controller.add(
                                   category[widget.categoryIndex][widget.index]);
                             }

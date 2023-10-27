@@ -4,6 +4,14 @@ class Item {
   int price;
   int category;
   int index;
+  String size;
 
-  Item({required this.name, required this.imageUrl, required this.price,required this.category,required this.index});
+  Item({
+    required this.name,
+    required this.imageUrl,
+    required this.price,
+    required this.category,
+    required this.index,
+    required this.size,
+  });
 }

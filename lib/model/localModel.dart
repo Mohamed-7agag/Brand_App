@@ -12,6 +12,7 @@ getShirt() {
       price: 15 + Random().nextInt(50),
       category: 0,
       index: i - 1,
+      size: "",
     ));
   }
 }
@@ -25,6 +26,7 @@ getTshirt() {
       price: 15 + Random().nextInt(50),
       category: 1,
       index: i - 1,
+      size: "",
     ));
   }
 }
@@ -38,6 +40,7 @@ getPantaloon() {
       price: 15 + Random().nextInt(50),
       category: 2,
       index: i - 1,
+      size: "",
     ));
   }
 }
@@ -51,6 +54,7 @@ getJacket() {
       price: 15 + Random().nextInt(60),
       category: 3,
       index: i - 1,
+      size: "",
     ));
   }
 }
@@ -64,6 +68,7 @@ getShoes() {
       price: 15 + Random().nextInt(50),
       category: 4,
       index: i - 1,
+      size: "",
     ));
   }
 }
@@ -77,6 +82,7 @@ getShort() {
       price: 15 + Random().nextInt(30),
       category: 5,
       index: i - 1,
+      size: "",
     ));
   }
 }
