@@ -1,5 +1,6 @@
 // ignore_for_file: file_names, unused_local_variable
 
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:for_u/controller/controller.dart';
@@ -26,32 +27,17 @@ class _BottomappbarState extends State<Bottomappbar> {
   ];
 
   _onbackButtonPressed(BuildContext context) async {
-    bool? exitApp = await Get.defaultDialog(
-      actions: [
-        TextButton(
-            style: ButtonStyle(
-                foregroundColor:
-                    MaterialStateProperty.all(const Color(0xffffa500))),
-            onPressed: () {
-              Navigator.of(context).pop(false);
-            },
-            child: const Text("No")),
-        TextButton(
-            style: ButtonStyle(
-                foregroundColor:
-                    MaterialStateProperty.all(const Color(0xffffa500))),
-            onPressed: () {
-              SystemNavigator.pop();
-            },
-            child: const Text("Yes")),
-      ],
-      middleText: "Do You Want To Close The App??",
-      title: "Really?",
-      middleTextStyle: const TextStyle(fontSize: 12),
-      titleStyle: const TextStyle(fontSize: 14),
-      radius: 15,
-      titlePadding: const EdgeInsets.symmetric(vertical: 15),
-    );
+    bool? exitApp = await AwesomeDialog(
+      context: context,
+      dialogType: DialogType.infoReverse,
+      animType: AnimType.rightSlide,
+      title: 'Really',
+      desc: 'Do You Want To Exit The App?',
+      btnCancelOnPress: () {},
+      btnOkOnPress: () {
+        SystemNavigator.pop();
+      },
+    ).show();
 
     return exitApp ?? false;
   }

@@ -1,5 +1,6 @@
 // ignore_for_file: unused_local_variable, prefer_typing_uninitialized_variables, file_names
 
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:for_u/controller/controller.dart';
 import 'package:for_u/model/localModel.dart';
@@ -22,6 +23,15 @@ class ItemDetail extends StatefulWidget {
 class _ItemDetailState extends State<ItemDetail> {
   Cart controller = Get.find<Cart>();
   String choosedSize = "";
+  checked(String name, String choosedSize) {
+    for (int i = 0; i < controller.cartItemsLength; i++) {
+      if (controller.cartitems[i].name == name &&
+          controller.size[i] == choosedSize) {
+        return true;
+      }
+    }
+    return false;
+  }
 
   Widget customRadio(String txt, int index) {
     return Obx(
@@ -119,14 +129,10 @@ class _ItemDetailState extends State<ItemDetail> {
                                   controller.removeLike(
                                       category[widget.categoryIndex]
                                           [widget.index]);
-                                  controller.removeCategoryAndIndex(
-                                      widget.categoryIndex, widget.index);
                                 } else {
                                   controller.addLike(
                                       category[widget.categoryIndex]
                                           [widget.index]);
-                                  controller.addCategoryAndIndex(
-                                      widget.categoryIndex, widget.index);
                                 }
                               },
                               icon: !controller.cartLikedItems.contains(
@@ -174,58 +180,44 @@ class _ItemDetailState extends State<ItemDetail> {
                       ElevatedButton(
                         onPressed: () {
                           if (controller.selectedIndex.value != 0) {
-                            if (controller.cartitems.contains(
-                                    category[widget.categoryIndex]
-                                        [widget.index]) &&
+                            if (checked(
                                 category[widget.categoryIndex][widget.index]
-                                        .size ==
-                                    choosedSize) {
-                              Get.defaultDialog(
-                                  actions: [
-                                    IconButton(
-                                        onPressed: () {
-                                          Get.back();
-                                        },
-                                        icon: const Text("OK")),
-                                  ],
-                                  middleText: "Item Already Exist In cart",
-                                  title: "Not Possible",
-                                  titleStyle: TextStyle(
-                                      fontSize: 15, color: Colors.red[600]),
-                                  titlePadding: const EdgeInsets.only(
-                                      top: 15, bottom: 10),
-                                  middleTextStyle:
-                                      const TextStyle(fontSize: 13));
+                                    .name,
+                                choosedSize)) {
+                              AwesomeDialog(
+                                context: context,
+                                dialogType: DialogType.error,
+                                animType: AnimType.rightSlide,
+                                title: 'Not Possible',
+                                desc: 'Item Already Exist In cart',
+                                btnOkOnPress: () {},
+                                btnOkColor: const Color(0xffd93e46),
+                              ).show();
                             } else {
                               controller.addSize(choosedSize);
-                              Get.snackbar(
-                                "",
-                                "",
-                                duration: const Duration(milliseconds: 1100),
-                                titleText: const Text(
-                                  "Done",
-                                  style: TextStyle(
-                                      fontSize: 13, fontFamily: 'myfont'),
-                                ),
-                                messageText: const Text(
-                                  "Item Added To Cart",
-                                  style: TextStyle(
-                                      fontSize: 11, fontFamily: 'myfont'),
-                                ),
-                              );
-                              category[widget.categoryIndex][widget.index]
-                                  .size = choosedSize;
+                              AwesomeDialog(
+                                context: context,
+                                dialogType: DialogType.success,
+                                animType: AnimType.rightSlide,
+                                title: 'DONE',
+                                desc: 'Item Added To Cart',
+                                btnOkOnPress: () {},
+                              ).show();
+
                               controller.add(
-                                  category[widget.categoryIndex][widget.index]);
+                                  category[widget.categoryIndex][widget.index],
+                                  choosedSize);
                             }
                           } else {
-                            Get.defaultDialog(actions: [
-                              IconButton(
-                                  onPressed: () {
-                                    Get.back();
-                                  },
-                                  icon: const Text("OK")),
-                            ], middleText: "Must Choose Size");
+                            AwesomeDialog(
+                                    context: context,
+                                    dialogType: DialogType.warning,
+                                    animType: AnimType.rightSlide,
+                                    title: 'Warning',
+                                    desc: 'Must Choose Size',
+                                    btnOkOnPress: () {},
+                                    btnOkColor: const Color(0xfffeb800))
+                                .show();
                           }
                         },
                         style: ButtonStyle(
@@ -235,7 +227,7 @@ class _ItemDetailState extends State<ItemDetail> {
                               const Color(0xff111111)),
                           padding: MaterialStateProperty.all(
                               const EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 7)),
+                                  vertical: 12, horizontal: 7)),
                           shape: MaterialStateProperty.all(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(50),
@@ -262,7 +254,7 @@ class _ItemDetailState extends State<ItemDetail> {
                     ],
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),

@@ -2,24 +2,23 @@
 
 import 'package:for_u/item.dart';
 import 'package:get/get.dart';
-import 'package:collection/collection.dart';
-
 class Cart extends GetxController {
   List<Item> _items = [];
   List<Item> _likedItems = [];
-  List<List> _categortAndIndex = [];
   List<String> _size = [];
   int _price = 0;
 
-  void add(Item item) {
+  void add(Item item, String choosedSize) {
     _price += item.price;
+    item.size = choosedSize;
     _items.add(item);
     update();
   }
 
-  void remove(Item item) {
-    _price -= (item.price);
-    _items.remove(item);
+  void remove(int i) {
+    _price -= (_items[i].price);
+    _size.removeAt(i);
+    _items.removeAt(i);
     update();
   }
 
@@ -33,32 +32,13 @@ class Cart extends GetxController {
     update();
   }
 
-  void addCategoryAndIndex(int categoryIndex, int index) {
-    _categortAndIndex.add([categoryIndex, index]);
-    update();
-  }
-
-  void removeCategoryAndIndex(int categoryIndex, int index) {
-    _categortAndIndex.removeWhere((element) =>
-        const ListEquality().equals(element, [categoryIndex, index]));
-    update();
-  }
-
   void addSize(String s) {
     _size.add(s);
     update();
   }
 
-  get CategoryAndIndex {
-    return _categortAndIndex;
-  }
-
   get size {
     return _size;
-  }
-
-  get CategoryAndIndexLength {
-    return _categortAndIndex.length;
   }
 
   get cartItemsLength {
@@ -83,6 +63,4 @@ class Cart extends GetxController {
 
   RxInt curIndex = 0.obs;
   RxInt selectedIndex = 0.obs;
-
-  
 }

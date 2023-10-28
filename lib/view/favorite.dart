@@ -54,11 +54,11 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                         mainAxisSpacing: 10,
                         crossAxisCount: 2,
                       ),
-                      itemCount: controller.CategoryAndIndexLength,
+                      itemCount: controller.cartLikedItemsLength,
                       itemBuilder: (BuildContext context, int index) {
                         return ItemFavoriteBox(
-                          index: controller.CategoryAndIndex[index][1],
-                          categoryIndex: controller.CategoryAndIndex[index][0],
+                          index: controller.cartLikedItems[index].index,
+                          categoryIndex: controller.cartLikedItems[index].category,
                         );
                       },
                     ),

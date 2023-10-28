@@ -86,8 +86,7 @@ class _ItemFavoriteBoxState extends State<ItemFavoriteBox> {
                     onPressed: () {
                       controller.removeLike(
                           category[widget.categoryIndex][widget.index]);
-                      controller.removeCategoryAndIndex(
-                          widget.categoryIndex, widget.index);
+                      
                     },
                     icon: const Icon(
                       Icons.favorite_rounded,

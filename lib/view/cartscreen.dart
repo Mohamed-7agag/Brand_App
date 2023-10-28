@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:for_u/controller/controller.dart';
 import 'package:for_u/view/itemDetail.dart';
@@ -140,7 +141,7 @@ class _CartScreenState extends State<CartScreen> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    controller.remove(controller.cartitems[i]);
+                                    controller.remove(i);
                                   },
                                   icon: Icon(
                                     Icons.cancel_rounded,
@@ -190,29 +191,24 @@ class _CartScreenState extends State<CartScreen> {
                     ElevatedButton(
                       onPressed: () {
                         if (controller.totalprice != 0) {
-                          Get.defaultDialog(
-                              actions: [
-                                IconButton(
-                                    onPressed: () {
-                                      Get.back();
-                                    },
-                                    icon: const Text("OK")),
-                              ],
-                              title: "Done",
-                              middleText: "Successful Order",
-                              titleStyle: TextStyle(color: Colors.green[600]));
+                          AwesomeDialog(
+                            context: context,
+                            dialogType: DialogType.success,
+                            animType: AnimType.rightSlide,
+                            title: 'Done',
+                            desc: 'Successful Order',
+                            btnOkOnPress: () {},
+                          ).show();
                         } else {
-                          Get.defaultDialog(
-                              actions: [
-                                IconButton(
-                                    onPressed: () {
-                                      Get.back();
-                                    },
-                                    icon: const Text("OK")),
-                              ],
-                              title: "Sorry",
-                              middleText: "No Item In Cart",
-                              titleStyle: TextStyle(color: Colors.red[600]));
+                          AwesomeDialog(
+                            context: context,
+                            dialogType: DialogType.error,
+                            animType: AnimType.rightSlide,
+                            title: 'Sorry',
+                            desc: 'No Item In Cart',
+                            btnOkOnPress: () {},
+                            btnOkColor: const Color(0xffd93e46),
+                          ).show();
                         }
                       },
                       style: ButtonStyle(
@@ -221,7 +217,7 @@ class _CartScreenState extends State<CartScreen> {
                         backgroundColor:
                             MaterialStateProperty.all(const Color(0xff111111)),
                         padding: MaterialStateProperty.all(
-                            EdgeInsets.symmetric(vertical: mq.height * 0.015)),
+                            const EdgeInsets.symmetric(vertical: 12)),
                         shape: MaterialStateProperty.all(
                           RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50),
